@@ -26,6 +26,6 @@ public class LoginActivity extends AppCompatActivity {
         loginRestoBtn = findViewById(R.id.loginButtonResto);
         registerText = findViewById(R.id.loginRegisterButton);
         progressBar = findViewById(R.id.loginProgressBar);
-        
+
     }
 }
