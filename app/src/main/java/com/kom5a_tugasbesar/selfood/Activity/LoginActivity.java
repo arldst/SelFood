@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -47,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(@NonNull View view) {
                 registerTextAction();
-                Toast.makeText(LoginActivity.this, "test", Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -62,7 +62,17 @@ public class LoginActivity extends AppCompatActivity {
         RegisterOptionFragment fragment = RegisterOptionFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.slide_in_to_up, R.anim.slide_out_to_down, R.anim.slide_in_to_up, R.anim.slide_out_to_down);
         fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.add(R.id.loginRegisterOption, fragment, "REGISTER_OPTION_FRAGMENT");
+        fragmentTransaction.add(R.id.loginRegisterOption, fragment, "REGISTER_OPTION_FRAGMENT").commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent exit = new Intent(Intent.ACTION_MAIN);
+        exit.addCategory(Intent.CATEGORY_HOME);
+        exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(exit);
     }
 }
