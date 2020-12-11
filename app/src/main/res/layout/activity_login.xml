@@ -37,6 +37,7 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="@string/login_pengguna"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
@@ -49,6 +50,7 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="@string/login_resto"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
@@ -67,6 +69,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButtonUser"
         app:layout_constraintVertical_bias="0.05" />
+    
+    <FrameLayout
+        android:id="@+id/loginRegisterOption"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
     <ProgressBar
         android:id="@+id/loginProgressBar"
