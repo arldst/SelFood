@@ -4,6 +4,145 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.RestaurantRegistrationActivity">
+    tools:context=".Activity.UserRegistrationActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/wave_register_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registrasi_restoran"
+        android:textSize="24sp"
+        android:fontFamily="@font/opensans_bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.080"/>
+
+    <EditText
+        android:id="@+id/regInputEmail"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_custom_box"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/custom_email_icon"
+        android:paddingStart="12dp"
+        android:drawablePadding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.200" />
+
+    <EditText
+        android:id="@+id/regInputPassword"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_custom_box"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:drawableStart="@drawable/custom_lock_icon"
+        android:paddingStart="12dp"
+        android:drawablePadding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.300" />
+
+    <EditText
+        android:id="@+id/regInputConfPassword"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_custom_box"
+        android:hint="@string/konfirmasi_password"
+        android:inputType="textPassword"
+        android:drawableStart="@drawable/custom_lock_icon"
+        android:paddingStart="12dp"
+        android:drawablePadding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.400" />
+
+    <EditText
+        android:id="@+id/regInputRestoName"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_custom_box"
+        android:hint="@string/nama_restoran"
+        android:inputType="text"
+        android:drawableStart="@drawable/custom_restaurant_icon"
+        android:paddingStart="12dp"
+        android:drawablePadding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.500" />
+
+    <EditText
+        android:id="@+id/regInputPhoneNumber"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_custom_box"
+        android:hint="@string/nomor_telepon"
+        android:inputType="text"
+        android:drawableStart="@drawable/custom_phone_icon"
+        android:paddingStart="12dp"
+        android:drawablePadding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.600" />
+
+    <EditText
+        android:id="@+id/regRestoCategory"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_custom_box"
+        android:hint="@string/jenis_restoran"
+        android:drawableStart="@drawable/custom_food_icon"
+        android:paddingStart="12dp"
+        android:drawablePadding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.700"/>
+
+    <Button
+        android:id="@+id/regButtonUser"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="@string/registrasi"
+        android:background="@drawable/button_red"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.940"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
