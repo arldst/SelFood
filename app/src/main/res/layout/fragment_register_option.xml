@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/chooseOptionText"
-        android:text="Kamu ingin daftar sebagai apa ?"
+        android:text="@string/register_option_dialog"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         android:layout_centerHorizontal="true"

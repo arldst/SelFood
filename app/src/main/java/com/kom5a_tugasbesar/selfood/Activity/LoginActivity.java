@@ -66,13 +66,4 @@ public class LoginActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.add(R.id.loginRegisterOption, fragment, "REGISTER_OPTION_FRAGMENT").commit();
     }
-
-    @Override
-    public void onBackPressed() {
-
-        Intent exit = new Intent(Intent.ACTION_MAIN);
-        exit.addCategory(Intent.CATEGORY_HOME);
-        exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(exit);
-    }
 }
