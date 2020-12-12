@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "361355680802",
+    "project_id": "selfood-9d3b0",
+    "storage_bucket": "selfood-9d3b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361355680802:android:0fa7135d869405dc167e7b",
+        "android_client_info": {
+          "package_name": "com.kom5a_tugasbesar.selfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "361355680802-odelnneo880pud50j1u3k5utfhijt1fv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kom5a_tugasbesar.selfood",
+            "certificate_hash": "965e9b6c4e79bd1b70bdd8029a7feab2c654f6ff"
+          }
+        },
+        {
+          "client_id": "361355680802-u4ndge4vdg80tibpan159vksjcg90a82.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhlGfScLCFINRy8LV7byvaqKiQE6oCiK0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "361355680802-u4ndge4vdg80tibpan159vksjcg90a82.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
