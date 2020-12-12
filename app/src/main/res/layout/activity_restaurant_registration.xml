@@ -30,7 +30,7 @@
         app:layout_constraintVertical_bias="0.080"/>
 
     <EditText
-        android:id="@+id/regInputEmail"
+        android:id="@+id/regInputEmailResto"
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:background="@drawable/edittext_custom_box"
@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.200" />
 
     <EditText
-        android:id="@+id/regInputPassword"
+        android:id="@+id/regInputPasswordResto"
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:background="@drawable/edittext_custom_box"
@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="0.300" />
 
     <EditText
-        android:id="@+id/regInputConfPassword"
+        android:id="@+id/regInputConfPasswordResto"
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:background="@drawable/edittext_custom_box"
@@ -98,12 +98,12 @@
         app:layout_constraintVertical_bias="0.500" />
 
     <EditText
-        android:id="@+id/regInputPhoneNumber"
+        android:id="@+id/regInputPhoneNumberResto"
         android:layout_width="340dp"
         android:layout_height="50dp"
         android:background="@drawable/edittext_custom_box"
         android:hint="@string/nomor_telepon"
-        android:inputType="text"
+        android:inputType="number"
         android:drawableStart="@drawable/custom_phone_icon"
         android:paddingStart="12dp"
         android:drawablePadding="12dp"
@@ -131,7 +131,7 @@
         app:layout_constraintVertical_bias="0.700"/>
 
     <Button
-        android:id="@+id/regButtonUser"
+        android:id="@+id/regButtonResto"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="@string/registrasi"

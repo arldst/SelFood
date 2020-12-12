@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.kom5a_tugasbesar.selfood.Activity.ui.RegisterOptionFragment;
 import com.kom5a_tugasbesar.selfood.R;
@@ -55,6 +54,12 @@ public class LoginActivity extends AppCompatActivity {
         registerText.setText(ss);
         registerText.setMovementMethod(LinkMovementMethod.getInstance());
 
+        loginPelangganBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void registerTextAction() {
