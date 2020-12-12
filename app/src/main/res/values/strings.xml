@@ -8,5 +8,7 @@
     <string name="login_pengguna">LOGIN PELANGGAN</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="register_option_dialog">Kamu ingin daftar sebagai siapa?</string>
+    <string name="register_option_dialog">Kamu ingin mendaftar sebagai siapa?</string>
+    <string name="pelanggan">Pelanggan</string>
+    <string name="restoran">Restoran</string>
 </resources>

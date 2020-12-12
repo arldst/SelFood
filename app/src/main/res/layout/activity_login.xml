@@ -6,31 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".Activity.LoginActivity">
 
+    <View
+        android:id="@+id/viewTopLogin"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/colorRed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/viewWaveLogin"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toBottomOf="@+id/viewTopLogin"
+        android:background="@drawable/wave_login_menu" />
+
     <EditText
         android:id="@+id/loginInputEmail"
         android:layout_width="340dp"
         android:layout_height="50dp"
+        android:background="@drawable/edittext_custom_box"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/custom_email_icon"
+        android:paddingStart="12dp"
+        android:drawablePadding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.400" />
+        app:layout_constraintVertical_bias="0.450" />
 
     <EditText
         android:id="@+id/loginInputPassword"
         android:layout_width="340dp"
         android:layout_height="50dp"
+        android:background="@drawable/edittext_custom_box"
         android:hint="@string/password"
         android:inputType="textPassword"
+        android:drawableStart="@drawable/custom_lock_icon"
+        android:paddingStart="12dp"
+        android:drawablePadding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.500" />
+        app:layout_constraintVertical_bias="0.550" />
 
     <RelativeLayout
         android:id="@+id/loginBtnContainer"
@@ -41,13 +65,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginInputPassword"
-        app:layout_constraintVertical_bias="0.6" >
+        app:layout_constraintVertical_bias="0.675" >
 
         <Button
             android:id="@+id/loginButtonUser"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:text="@string/login_pengguna"
+            android:background="@drawable/button_red"
+            android:textColor="@android:color/white"
             android:textSize="12sp" />
 
         <Button
@@ -56,7 +82,10 @@
             android:layout_height="50dp"
             android:text="@string/login_resto"
             android:textSize="12sp"
-            android:layout_toEndOf="@id/loginButtonUser" />
+            android:background="@drawable/button_red"
+            android:textColor="@android:color/white"
+            android:layout_toEndOf="@id/loginButtonUser"
+            android:layout_marginLeft="10dp"/>
 
     </RelativeLayout>
 
@@ -70,7 +99,7 @@
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginBtnContainer"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <ProgressBar
         android:id="@+id/loginProgressBar"
@@ -86,6 +115,8 @@
         android:id="@+id/loginRegisterOption"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        >
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
