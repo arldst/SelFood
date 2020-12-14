@@ -19,6 +19,7 @@
     <string name="nama_restoran">Nama Restoran</string>
     <string name="registrasi_restoran">Registrasi Restoran</string>
     <string name="jenis_restoran">Jenis Restoran</string>
+    <string name="alamat_restoran">Alamat Restoran</string>
 
     <string-array name="restaurant_category">
         <item>Barat</item>
@@ -30,4 +31,8 @@
         <item>Timur Tengah</item>
         <item>Lainnya</item>
     </string-array>
+    <string name="title_activity_resto_dashboard">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

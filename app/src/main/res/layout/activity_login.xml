@@ -22,6 +22,16 @@
         app:layout_constraintTop_toBottomOf="@+id/viewTopLogin"
         android:background="@drawable/wave_login_menu" />
 
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/selfood_logo"
+        app:layout_constraintBottom_toTopOf="@+id/loginRegisterOption"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
     <EditText
         android:id="@+id/loginInputEmail"
         android:layout_width="340dp"
@@ -68,24 +78,13 @@
         app:layout_constraintVertical_bias="0.675" >
 
         <Button
-            android:id="@+id/loginButtonUser"
+            android:id="@+id/loginButton"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:text="@string/login_pengguna"
+            android:text="@string/login"
             android:background="@drawable/button_red"
             android:textColor="@android:color/white"
             android:textSize="12sp" />
-
-        <Button
-            android:id="@+id/loginButtonResto"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="@string/login_resto"
-            android:textSize="12sp"
-            android:background="@drawable/button_red"
-            android:textColor="@android:color/white"
-            android:layout_toEndOf="@id/loginButtonUser"
-            android:layout_marginLeft="10dp"/>
 
     </RelativeLayout>
 

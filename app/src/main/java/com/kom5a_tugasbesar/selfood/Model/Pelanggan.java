@@ -3,14 +3,16 @@ package com.kom5a_tugasbesar.selfood.Model;
 public class Pelanggan {
 
     private String email, fullName, phoneNumber;
+    private int status;
 
     public Pelanggan() {
     }
 
-    public Pelanggan(String email, String fullName, String phoneNumber) {
+    public Pelanggan(String email, String fullName, String phoneNumber, int status) {
         this.email = email;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
+        this.status = status;
     }
 
     public String getEmail() {
@@ -36,4 +38,8 @@ public class Pelanggan {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public int getStatus() { return status; }
+
+    public void setStatus() { this.status = status; }
 }

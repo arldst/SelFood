@@ -110,7 +110,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()) {
-                                    Pelanggan user = new Pelanggan(email, fullname, phonenumber);
+                                    Pelanggan user = new Pelanggan(email, fullname, phonenumber, 0);
 
                                     FirebaseDatabase database = FirebaseDatabase.getInstance(dbUrl);
                                     DatabaseReference userRef = database.getReference("pelanggan");
