@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    android:layout_margin="12dp"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="380dp"
+        android:layout_height="240dp"
+        android:layout_gravity="center">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/resto_img_view_container"
+            android:layout_width="360dp"
+            android:layout_height="140dp"
+            app:cardCornerRadius="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:id="@+id/resto_img_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_food"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/resto_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/resto_img_view_container"
+            android:text="@string/nama_restoran"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="18sp"
+            android:ellipsize="end"
+            android:maxLines="1"/>
+
+        <TextView
+            android:id="@+id/resto_type_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/resto_name_view"
+            android:text="@string/jenis_restoran"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:layout_marginRight="10dp"
+            android:textSize="10sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/view_resto_button"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="@string/pesan"
+            android:textSize="10sp"
+            android:background="@drawable/button_red"
+            android:textColor="@android:color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

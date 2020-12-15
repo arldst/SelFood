@@ -4,13 +4,14 @@ import java.util.List;
 
 public class Restoran {
 
-    private String email, name, phoneNumber, type, address, imgUrl;
+    private String id, email, name, phoneNumber, type, address, imgUrl;
     private List<Table> tables;
 
     public Restoran() {
     }
 
-    public Restoran(String email, String name, String phoneNumber, String type, String address, List<Table> tables, String imgUrl) {
+    public Restoran(String id, String email, String name, String phoneNumber, String type, String address, List<Table> tables, String imgUrl) {
+        this.id = id;
         this.email = email;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -18,6 +19,14 @@ public class Restoran {
         this.address = address;
         this.tables = tables;
         this.imgUrl = imgUrl;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getEmail() {

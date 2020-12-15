@@ -32,4 +32,7 @@
     <string name="restoran_anda_belum_memiliki_menu">Restoran anda belum memiliki menu.</string>
     <string name="nama_makanan">Nama Makanan</string>
     <string name="submit">Submit</string>
+    <string name="title_activity_user">MainActivity</string>
+    <string name="pesanan">Pesanan</string>
+    <string name="pesan">Pesan</string>
 </resources>

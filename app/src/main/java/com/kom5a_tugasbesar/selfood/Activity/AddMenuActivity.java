@@ -128,7 +128,7 @@ public class AddMenuActivity extends AppCompatActivity {
                                                         if(task.isSuccessful()) {
                                                             mProgBar.setVisibility(View.GONE);
                                                             Toast.makeText(AddMenuActivity.this, "Berhasil menambah menu", Toast.LENGTH_LONG).show();
-                                                            startActivity(new Intent(AddMenuActivity.this, RestoDashboardActivity.class));
+                                                            startActivity(new Intent(AddMenuActivity.this, RestaurantActivity.class));
                                                         }
                                                         else {
                                                             mProgBar.setVisibility(View.GONE);
@@ -163,7 +163,7 @@ public class AddMenuActivity extends AppCompatActivity {
                                                         if(task.isSuccessful()) {
                                                             mProgBar.setVisibility(View.GONE);
                                                             Toast.makeText(AddMenuActivity.this, "Berhasil menambah menu", Toast.LENGTH_LONG).show();
-                                                            startActivity(new Intent(AddMenuActivity.this, RestoDashboardActivity.class));
+                                                            startActivity(new Intent(AddMenuActivity.this, RestaurantActivity.class));
                                                         }
                                                         else {
                                                             mProgBar.setVisibility(View.GONE);

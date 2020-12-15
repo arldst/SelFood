@@ -180,7 +180,9 @@ public class RestaurantRegistrationActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()) {
-                                    Restoran restoran = new Restoran(email, name, phoneNumber, category, restoAddress, null, null);
+
+                                    String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                    Restoran restoran = new Restoran(id, email, name, phoneNumber, category, restoAddress, null, null);
 
                                     FirebaseDatabase database = FirebaseDatabase.getInstance(dbUrl);
                                     DatabaseReference userRef = database.getReference("restoran");

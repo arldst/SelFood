@@ -11,6 +11,7 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -113,10 +114,9 @@ public class LoginActivity extends AppCompatActivity {
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                             if(dataSnapshot.exists()) {
                                                 progressBar.setVisibility(View.GONE);
-                                                startActivity(new Intent(LoginActivity.this, RestoDashboardActivity.class));
+                                                startActivity(new Intent(LoginActivity.this, RestaurantActivity.class));
                                             }
                                             else {
-                                                Toast.makeText(LoginActivity.this, "Login gagal", Toast.LENGTH_LONG);
                                                 progressBar.setVisibility(View.GONE);
                                             }
                                         }
@@ -126,10 +126,27 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                     });
 
+                                    userRef.child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if(snapshot.exists()) {
+                                                progressBar.setVisibility(View.GONE);
+                                                startActivity(new Intent(LoginActivity.this, UserActivity.class));
+                                            }
+                                            else {
+                                                progressBar.setVisibility(View.GONE);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
                                 }
                                 else {
-                                    Toast.makeText(LoginActivity.this, "Login gagal", Toast.LENGTH_LONG);
                                     progressBar.setVisibility(View.GONE);
+                                    Toast.makeText(LoginActivity.this, "Login gagal", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
