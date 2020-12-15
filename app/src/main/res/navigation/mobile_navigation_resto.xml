@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home_resto"
-        android:name="com.kom5a_tugasbesar.selfood.Activity.ui.RestoHomeFragment"
+        android:name="com.kom5c_tugasbesar.selfood.Activity.ui.RestoHomeFragment"
         android:label="@string/beranda"
         tools:layout="@layout/fragment_resto_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard_resto"
-        android:name="com.kom5a_tugasbesar.selfood.Activity.ui.RestoDashboardFragment"
+        android:name="com.kom5c_tugasbesar.selfood.Activity.ui.RestoDashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_resto_dashboard" />
 </navigation>

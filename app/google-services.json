@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:361355680802:android:0fa7135d869405dc167e7b",
         "android_client_info": {
-          "package_name": "com.kom5a_tugasbesar.selfood"
+          "package_name": "com.kom5c_tugasbesar.selfood"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "361355680802-odelnneo880pud50j1u3k5utfhijt1fv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.kom5a_tugasbesar.selfood",
+            "package_name": "com.kom5c_tugasbesar.selfood",
             "certificate_hash": "965e9b6c4e79bd1b70bdd8029a7feab2c654f6ff"
           }
         },

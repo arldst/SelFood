@@ -50,6 +50,20 @@
             android:layout_marginTop="24dp"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/resto_logout_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@+id/resto_name_home"
+            android:layout_below="@+id/resto_img_home_container"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/button_red"
+            android:backgroundTint="@color/colorRed"
+            android:drawableStart="@drawable/ic_logout"
+            android:paddingStart="3dp"
+            android:textColor="@android:color/white"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="500dp"

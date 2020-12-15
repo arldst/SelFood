@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home_user"
-        android:name="com.kom5a_tugasbesar.selfood.Activity.ui.UserHomeFragment"
+        android:name="com.kom5c_tugasbesar.selfood.Activity.ui.UserHomeFragment"
         android:label="@string/beranda"
         tools:layout="@layout/fragment_user_home" />
 
     <fragment
         android:id="@+id/navigation_order_user"
-        android:name="com.kom5a_tugasbesar.selfood.Activity.ui.UserOrderFragment"
+        android:name="com.kom5c_tugasbesar.selfood.Activity.ui.UserOrderFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_user_order" />
 </navigation>

@@ -35,4 +35,9 @@
     <string name="title_activity_user">MainActivity</string>
     <string name="pesanan">Pesanan</string>
     <string name="pesan">Pesan</string>
+    <string name="logout">Logout</string>
+    <string name="cari_restoran">Cari Restoran</string>
+    <string name="cari">CARI</string>
+    <string name="daftar_restoran">Daftar Restoran</string>
+    <string name="contact">Contact</string>
 </resources>
