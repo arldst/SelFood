@@ -65,7 +65,7 @@ public class RestoDashboardFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()) {
 
-                    placeholder.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.VISIBLE);
 
                     options = new FirebaseRecyclerOptions.Builder<Table>()
                             .setQuery(tableRef, Table.class).build();
@@ -74,8 +74,22 @@ public class RestoDashboardFragment extends Fragment {
                         @Override
                         protected void onBindViewHolder(TableAdapter tableAdapter, int i, Table table) {
 
-                            tableAdapter.tableNumber.setText(table.getNumber());
+                            tableAdapter.tableNumber.setText(String.valueOf(table.getNumber()));
                             tableAdapter.tableStatus.setText(table.getStatus());
+
+                            if(table.getPelanggan_id().equals("Available")) {
+                                tableAdapter.statusIndicator.setBackgroundResource(R.drawable.background_available);
+                            }
+                            else {
+                                tableAdapter.statusIndicator.setBackgroundResource(R.drawable.background_unavailable);
+                            }
+
+                            tableAdapter.itemView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Toast.makeText(getActivity(), "Testing...", Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
                         }
 
@@ -117,14 +131,13 @@ public class RestoDashboardFragment extends Fragment {
                         if(dataSnapshot.exists()) {
 
                             long count = dataSnapshot.getChildrenCount() + 1;
-                            Table newTable = new Table((int) count, null, "Tersedia");
+                            Table newTable = new Table(count, "Available", "Tersedia");
                             tableRef.child(String.valueOf(count)).setValue(newTable).addOnCompleteListener(new OnCompleteListener<Void>() {
 
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
 
                                     if(task.isSuccessful()) {
-
                                         mProgBar.setVisibility(View.GONE);
                                         Toast.makeText(getActivity(), "Berhasil menambah meja", Toast.LENGTH_SHORT).show();
                                     }
@@ -136,8 +149,10 @@ public class RestoDashboardFragment extends Fragment {
                             });
                         }
                         else {
-                            Table newTable = new Table(1, null, "Tersedia");
+                            Table newTable = new Table(1, "Available", "Tersedia");
                             tableRef.child("1").setValue(newTable);
+                            mProgBar.setVisibility(View.GONE);
+                            Toast.makeText(getActivity(), "Berhasil menambah meja", Toast.LENGTH_SHORT).show();
                         }
                     }
 

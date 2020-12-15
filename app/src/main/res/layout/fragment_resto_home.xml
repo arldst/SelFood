@@ -3,12 +3,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activity.ui.RestoHomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="230dp" >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/resto_img_home_container"
+            android:layout_width="360dp"
+            android:layout_height="140dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="10dp">
+
+            <ImageView
+                android:id="@+id/resto_img_home"
+                android:layout_width="360dp"
+                android:layout_height="140dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/restaurant_placeholder"/>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/upload_img_resto_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:background="@drawable/button_red"
+            android:text="Upload Gambar"
+            android:textSize="8sp"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:layout_toRightOf="@+id/resto_img_home_container"
+            android:layout_below="@+id/resto_img_home_container"
+            android:layout_marginLeft="-94dp"
+            android:layout_marginTop="-30dp"/>
+
+        <TextView
+            android:id="@+id/resto_name_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/resto_img_home_container"
+            android:textSize="18sp"
+            android:layout_marginTop="24dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:scrollbars="vertical"
+        android:layout_gravity="bottom"
+        android:id="@+id/rv_menu_resto"
+        android:paddingTop="16dp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/restoran_anda_belum_memiliki_menu"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:id="@+id/no_menu_placeholder"
+        android:visibility="gone"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_add"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/colorRed"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/resto_home_progressbar"
+        android:visibility="gone" />
 
 </FrameLayout>

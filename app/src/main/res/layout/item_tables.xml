@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     app:cardElevation="10dp"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="10dp"
+    android:layout_margin="16dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -44,10 +45,10 @@
             android:id="@+id/table_status_indicator"
             android:layout_width="70dp"
             android:layout_height="5dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="3dp"
             android:layout_below="@+id/table_status"
             android:layout_centerHorizontal="true"
-            android:background="@android:color/holo_green_light"/>
+            android:background="@drawable/background_available"/>
         
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

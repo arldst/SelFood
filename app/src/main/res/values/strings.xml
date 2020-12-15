@@ -20,17 +20,6 @@
     <string name="registrasi_restoran">Registrasi Restoran</string>
     <string name="jenis_restoran">Jenis Restoran</string>
     <string name="alamat_restoran">Alamat Restoran</string>
-
-    <string-array name="restaurant_category">
-        <item>Barat</item>
-        <item>Cepat Saji</item>
-        <item>Chinese</item>
-        <item>Jepang</item>
-        <item>Korea</item>
-        <item>Seafood</item>
-        <item>Timur Tengah</item>
-        <item>Lainnya</item>
-    </string-array>
     <string name="title_activity_resto_dashboard">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -38,4 +27,7 @@
     <string name="beranda">Beranda</string>
     <string name="table_number_placeholder">0</string>
     <string name="nomor_meja">Nomor Meja</string>
+    <string name="deskripsi_makanan">Deskripsi Makanan</string>
+    <string name="harga_makanan">Harga Makanan</string>
+    <string name="restoran_anda_belum_memiliki_menu">Restoran anda belum memiliki menu.</string>
 </resources>
