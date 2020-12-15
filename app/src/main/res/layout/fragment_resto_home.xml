@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="230dp" >
+        android:layout_height="match_parent" >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/resto_img_home_container"
@@ -50,16 +50,17 @@
             android:layout_marginTop="24dp"
             android:textStyle="bold" />
 
-    </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:scrollbars="vertical"
+            android:layout_below="@+id/resto_name_home"
+            android:layout_marginTop="24dp"
+            android:id="@+id/rv_menu_resto"
+            android:visibility="visible"
+            android:layout_centerHorizontal="true"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:scrollbars="vertical"
-        android:layout_gravity="bottom"
-        android:id="@+id/rv_menu_resto"
-        android:paddingTop="16dp"
-        android:visibility="gone"/>
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"

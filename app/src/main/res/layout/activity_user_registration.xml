@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="@string/registrasi_pelanggan"
         android:textSize="24sp"
-        android:fontFamily="@font/opensans_bold"
+        android:fontFamily="@font/opensans_extrabold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"

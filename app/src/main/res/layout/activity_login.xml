@@ -47,7 +47,8 @@
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.450" />
+        app:layout_constraintVertical_bias="0.450"
+        android:paddingEnd="12dp"/>
 
     <EditText
         android:id="@+id/loginInputPassword"
@@ -64,7 +65,8 @@
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.550" />
+        app:layout_constraintVertical_bias="0.550"
+        android:paddingEnd="12dp"/>
 
     <RelativeLayout
         android:id="@+id/loginBtnContainer"

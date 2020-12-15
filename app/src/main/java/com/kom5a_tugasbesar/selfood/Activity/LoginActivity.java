@@ -115,6 +115,10 @@ public class LoginActivity extends AppCompatActivity {
                                                 progressBar.setVisibility(View.GONE);
                                                 startActivity(new Intent(LoginActivity.this, RestoDashboardActivity.class));
                                             }
+                                            else {
+                                                Toast.makeText(LoginActivity.this, "Login gagal", Toast.LENGTH_LONG);
+                                                progressBar.setVisibility(View.GONE);
+                                            }
                                         }
                                         @Override
                                         public void onCancelled(@NonNull DatabaseError databaseError) {

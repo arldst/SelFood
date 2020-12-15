@@ -30,4 +30,6 @@
     <string name="deskripsi_makanan">Deskripsi Makanan</string>
     <string name="harga_makanan">Harga Makanan</string>
     <string name="restoran_anda_belum_memiliki_menu">Restoran anda belum memiliki menu.</string>
+    <string name="nama_makanan">Nama Makanan</string>
+    <string name="submit">Submit</string>
 </resources>

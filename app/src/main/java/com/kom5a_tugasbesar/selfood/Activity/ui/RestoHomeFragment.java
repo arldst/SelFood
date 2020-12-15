@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
@@ -37,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.kom5a_tugasbesar.selfood.Activity.AddMenuActivity;
 import com.kom5a_tugasbesar.selfood.Adapter.MenuAdapter;
 import com.kom5a_tugasbesar.selfood.Model.Menu;
 import com.kom5a_tugasbesar.selfood.Model.Restoran;
@@ -45,6 +47,7 @@ import com.kom5a_tugasbesar.selfood.R;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 
 import static android.app.Activity.RESULT_OK;
@@ -111,7 +114,7 @@ public class RestoHomeFragment extends Fragment {
 
                     adapter = new FirebaseRecyclerAdapter<Menu, MenuAdapter>(options) {
                         @Override
-                        protected void onBindViewHolder(MenuAdapter menuAdapter, int i, Menu menu) {
+                        protected void onBindViewHolder(MenuAdapter menuAdapter, final int i, Menu menu) {
 
                             Glide.with(menuAdapter.itemView.getContext())
                                     .load(menu.getFoodImgUrl())
@@ -120,15 +123,15 @@ public class RestoHomeFragment extends Fragment {
 
                             menuAdapter.foodName.setText(menu.getName());
                             menuAdapter.foodDescription.setText(menu.getDescription());
-                            NumberFormat format = new DecimalFormat("#.###");
+                            NumberFormat format = new DecimalFormat("###,###");
                             int fp = menu.getPrice();
                             String food_price = format.format(fp);
-                            menuAdapter.foodPrice.setText(food_price);
+                            menuAdapter.foodPrice.setText("Rp. " + food_price);
 
                             menuAdapter.deleteBtn.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    snapshot.getRef().removeValue();
+                                    snapshot.getRef().child(String.valueOf(i+1)).removeValue();
                                 }
                             });
                         }
@@ -142,6 +145,11 @@ public class RestoHomeFragment extends Fragment {
                             return new MenuAdapter(v);
                         }
                     };
+
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                    recyclerView.setLayoutManager(linearLayoutManager);
+                    adapter.startListening();
+                    recyclerView.setAdapter(adapter);
                 }
                 else {
                     noMenuPlaceholder.setVisibility(View.VISIBLE);
@@ -190,7 +198,7 @@ public class RestoHomeFragment extends Fragment {
         addMenuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                startActivity(new Intent(getActivity(), AddMenuActivity.class));
             }
         });
 
