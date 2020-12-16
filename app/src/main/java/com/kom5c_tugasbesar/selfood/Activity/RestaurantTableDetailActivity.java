@@ -75,9 +75,12 @@ public class RestaurantTableDetailActivity extends AppCompatActivity {
                         if(snapshot.exists()) {
 
                             userName.setText(snapshot.child("name").getValue().toString());
-                            NumberFormat format = new DecimalFormat("###,###");
-                            String food_price_total = format.format(snapshot.child("total_price").getValue());
-                            totalPriceText.setText("Total Harga : Rp. " + food_price_total);
+
+                            if(snapshot.child("total_price").getValue() != null) {
+                                NumberFormat format = new DecimalFormat("###,###");
+                                String food_price_total = format.format(snapshot.child("total_price").getValue());
+                                totalPriceText.setText("Total Harga : Rp. " + food_price_total);
+                            }
                             orderStatus.setText(snapshot.child("status").getValue().toString());
 
                             options = new FirebaseRecyclerOptions.Builder<Menu>()

@@ -82,11 +82,18 @@ public class UserOrderFragment extends Fragment {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                                    Glide.with(getActivity())
-                                            .load(snapshot.child("imgUrl").getValue())
-                                            .into(restoImg);
+                                    if(getActivity() == null) {
+                                        return;
+                                    }
 
-                                    restoName.setText(snapshot.child("name").getValue().toString());
+                                    if(snapshot.exists()) {
+                                        Glide.with(getActivity())
+                                                .load(snapshot.child("imgUrl").getValue())
+                                                .into(restoImg);
+
+                                        restoName.setText(snapshot.child("name").getValue().toString());
+                                    }
+
                                 }
 
                                 @Override
@@ -105,6 +112,7 @@ public class UserOrderFragment extends Fragment {
 
                     orderStatus.setText(snapshot.child("status").getValue().toString().trim());
 
+                    // Get Button Status
                     if(snapshot.child("status").getValue().toString().equals("Menunggu Konfirmasi") || snapshot.child("status").getValue().toString().equals("Pesanan Diproses")
                             || snapshot.child("status").getValue().toString().equals("Mengantar Makanan")) {
                         changeStatusBtn.setText("Bayar");
@@ -157,9 +165,11 @@ public class UserOrderFragment extends Fragment {
                         }
                     };
 
-                    NumberFormat format = new DecimalFormat("###,###");
-                    String food_price_total = format.format(snapshot.child("total_price").getValue());
-                    totalPriceText.setText("Total Harga : Rp. " + food_price_total);
+                    if(snapshot.child("total_price").getValue() != null) {
+                        NumberFormat format = new DecimalFormat("###,###");
+                        String food_price_total = format.format(snapshot.child("total_price").getValue());
+                        totalPriceText.setText("Total Harga : Rp. " + food_price_total);
+                    }
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                     recyclerView.setLayoutManager(linearLayoutManager);

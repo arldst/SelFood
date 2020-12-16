@@ -80,105 +80,110 @@ public class PickTableActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull final DataSnapshot snapshot) {
 
-                options = new FirebaseRecyclerOptions.Builder<Table>()
-                        .setQuery(tableRef, Table.class).build();
+                if(snapshot.exists()) {
+                    options = new FirebaseRecyclerOptions.Builder<Table>()
+                            .setQuery(tableRef, Table.class).build();
 
-                adapter = new FirebaseRecyclerAdapter<Table, TableAdapter>(options) {
-                    @Override
-                    protected void onBindViewHolder(TableAdapter tableAdapter, int i, Table table) {
+                    adapter = new FirebaseRecyclerAdapter<Table, TableAdapter>(options) {
+                        @Override
+                        protected void onBindViewHolder(TableAdapter tableAdapter, int i, Table table) {
 
-                        final String table_status = table.getStatus();
-                        final int table_num = (int) table.getNumber();
-                        tableAdapter.tableNumber.setText(String.valueOf(table.getNumber()));
-                        tableAdapter.tableStatus.setText(table_status);
+                            final String table_status = table.getStatus();
+                            final int table_num = (int) table.getNumber();
+                            tableAdapter.tableNumber.setText(String.valueOf(table.getNumber()));
+                            tableAdapter.tableStatus.setText(table_status);
 
-                        if(table.getPelanggan_id().equals("Available")) {
-                            tableAdapter.statusIndicator.setBackgroundResource(R.drawable.background_available);
-                        }
-                        else {
-                            tableAdapter.statusIndicator.setBackgroundResource(R.drawable.background_unavailable);
-                        }
-
-                        tableAdapter.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if(table_status.equals("Tersedia") && user_status[0] == 0) {
-
-                                    tableRef.child(String.valueOf(table_num)).addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            snapshot.getRef().child("status").setValue("Sedang Memesan");
-                                            snapshot.getRef().child("pelanggan_id").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
-
-                                    userRef.child("status").addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            user_status[0] = (long) snapshot.getValue();
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
-
-                                    orderRef.getRef().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            Pesanan newPesanan = new Pesanan(resto_id, user_name[0], "Sedang Memesan", table_num);
-                                            snapshot.getRef().setValue(newPesanan);
-                                        }
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
-
-                                    FirebaseDatabase.getInstance(dbUrl).getReference("pelanggan").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            snapshot.getRef().child("status").setValue(1);
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
-
-                                    Intent startOrderIntent = new Intent(PickTableActivity.this, OrderActivity.class);
-                                    startOrderIntent.putExtra("resto_id_order", resto_id);
-                                    startOrderIntent.putExtra("table_number", table_num);
-                                    startActivity(startOrderIntent);
-                                }
-                                else {
-                                    Toast.makeText(PickTableActivity.this, "Pesanan anda masih dalam proses", Toast.LENGTH_LONG).show();
-                                }
+                            if(table.getPelanggan_id().equals("Available")) {
+                                tableAdapter.statusIndicator.setBackgroundResource(R.drawable.background_available);
                             }
-                        });
+                            else {
+                                tableAdapter.statusIndicator.setBackgroundResource(R.drawable.background_unavailable);
+                            }
 
-                    }
+                            tableAdapter.itemView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if(table_status.equals("Tersedia") && user_status[0] == 0) {
 
-                    @Override
-                    public TableAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                                        tableRef.child(String.valueOf(table_num)).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                snapshot.getRef().child("status").setValue("Sedang Memesan");
+                                                snapshot.getRef().child("pelanggan_id").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-                        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tables, parent, false);
+                                            }
 
-                        return new TableAdapter(v);
-                    }
-                };
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
 
-                GridLayoutManager gridLayoutManager = new GridLayoutManager(PickTableActivity.this, 3);
-                recyclerView.setLayoutManager(gridLayoutManager);
-                adapter.startListening();
-                recyclerView.setAdapter(adapter);
+                                            }
+                                        });
+
+                                        userRef.child("status").addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if(snapshot.exists()) {
+                                                    user_status[0] = (long) snapshot.getValue();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
+                                        orderRef.getRef().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                Pesanan newPesanan = new Pesanan(resto_id, user_name[0], "Sedang Memesan", table_num);
+                                                snapshot.getRef().setValue(newPesanan);
+                                            }
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
+                                        FirebaseDatabase.getInstance(dbUrl).getReference("pelanggan").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                snapshot.getRef().child("status").setValue(1);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
+                                        Intent startOrderIntent = new Intent(PickTableActivity.this, OrderActivity.class);
+                                        startOrderIntent.putExtra("resto_id_order", resto_id);
+                                        startOrderIntent.putExtra("table_number", table_num);
+                                        startActivity(startOrderIntent);
+                                    }
+                                    else {
+                                        Toast.makeText(PickTableActivity.this, "Pesanan anda masih dalam proses", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public TableAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tables, parent, false);
+
+                            return new TableAdapter(v);
+                        }
+                    };
+
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(PickTableActivity.this, 3);
+                    recyclerView.setLayoutManager(gridLayoutManager);
+                    adapter.startListening();
+                    recyclerView.setAdapter(adapter);
+                }
             }
 
             @Override

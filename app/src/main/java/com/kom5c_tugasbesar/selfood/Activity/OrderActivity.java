@@ -229,7 +229,7 @@ public class OrderActivity extends AppCompatActivity {
         final int table_number = getIntent().getIntExtra("table_number", 0);
 
         orderRef = FirebaseDatabase.getInstance(dbUrl).getReference("pesanan");
-        orderRef.addValueEventListener(new ValueEventListener() {
+        orderRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 snapshot.getRef().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
