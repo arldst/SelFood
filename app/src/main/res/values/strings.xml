@@ -48,4 +48,7 @@
     <string name="konfirmasi">Konfirmasi</string>
     <string name="jumlah_makanan">Jumlah Makanan</string>
     <string name="x1">x1</string>
+    <string name="status_pemesanan">Status Pemesanan</string>
+    <string name="belum_ada_pesanan">Belum ada pesanan.</string>
+    <string name="total_harga">Total Harga</string>
 </resources>

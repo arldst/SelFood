@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -93,7 +94,7 @@ public class ProceedOrderActivity extends AppCompatActivity {
 
                 NumberFormat format = new DecimalFormat("###,###");
                 String food_price_total = format.format(snapshot.child("total_price").getValue());
-                totalPriceText.setText("Rp. " + food_price_total);
+                totalPriceText.setText("Total Harga : Rp. " + food_price_total);
 
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ProceedOrderActivity.this);
                 recyclerView.setLayoutManager(linearLayoutManager);
@@ -117,6 +118,9 @@ public class ProceedOrderActivity extends AppCompatActivity {
                 orderRef.child("status").setValue("Menunggu Konfirmasi");
                 FirebaseDatabase.getInstance(dbUrl).getReference("restoran").child(resto_id)
                         .child("table").child(String.valueOf(table_number)).child("status").setValue("Menunggu Konfirmasi");
+
+                startActivity(new Intent(ProceedOrderActivity.this, UserActivity.class));
+                finish();
             }
         });
     }

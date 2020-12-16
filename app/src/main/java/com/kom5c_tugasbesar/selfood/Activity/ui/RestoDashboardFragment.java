@@ -1,5 +1,6 @@
 package com.kom5c_tugasbesar.selfood.Activity.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.kom5c_tugasbesar.selfood.Activity.RestaurantDetailActivity;
+import com.kom5c_tugasbesar.selfood.Activity.RestaurantTableDetailActivity;
 import com.kom5c_tugasbesar.selfood.Adapter.TableAdapter;
 import com.kom5c_tugasbesar.selfood.Model.Table;
 import com.kom5c_tugasbesar.selfood.R;
@@ -72,7 +75,7 @@ public class RestoDashboardFragment extends Fragment {
 
                     adapter = new FirebaseRecyclerAdapter<Table, TableAdapter>(options) {
                         @Override
-                        protected void onBindViewHolder(TableAdapter tableAdapter, int i, Table table) {
+                        protected void onBindViewHolder(final TableAdapter tableAdapter, int i, final Table table) {
 
                             tableAdapter.tableNumber.setText(String.valueOf(table.getNumber()));
                             tableAdapter.tableStatus.setText(table.getStatus());
@@ -87,7 +90,11 @@ public class RestoDashboardFragment extends Fragment {
                             tableAdapter.itemView.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Toast.makeText(getActivity(), "Testing...", Toast.LENGTH_SHORT).show();
+                                    if(!table.getPelanggan_id().equals("Available")) {
+                                        Intent viewDetail = new Intent(getActivity(), RestaurantTableDetailActivity.class);
+                                        viewDetail.putExtra("table_number", Integer.parseInt(tableAdapter.tableNumber.getText().toString()));
+                                        startActivity(viewDetail);
+                                    }
                                 }
                             });
 

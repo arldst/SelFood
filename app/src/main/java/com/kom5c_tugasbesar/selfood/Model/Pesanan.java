@@ -4,17 +4,26 @@ import java.util.List;
 
 public class Pesanan {
 
-    private String name, status;
+    private String restoId, name, status;
     private int tableNum;
     private List<Menu> menus;
 
     public Pesanan() {
     }
 
-    public Pesanan(String name, String status, int tableNum) {
+    public Pesanan(String restoId, String name, String status, int tableNum) {
+        this.restoId = restoId;
         this.name = name;
         this.status = status;
         this.tableNum = tableNum;
+    }
+
+    public String getRestoId() {
+        return restoId;
+    }
+
+    public void setRestoId(String restoId) {
+        this.restoId = restoId;
     }
 
     public String getName() {

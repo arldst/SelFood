@@ -71,7 +71,7 @@
             android:layout_below="@+id/resto_name_home"
             android:layout_marginTop="24dp"
             android:id="@+id/rv_menu_resto"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>

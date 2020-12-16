@@ -10,66 +10,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/user_order_detail_pic_container"
-            android:layout_width="360dp"
-            android:layout_height="140dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="10dp">
-
-            <ImageView
-                android:id="@+id/user_order_detail_pic"
-                android:layout_width="360dp"
-                android:layout_height="140dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/restaurant_placeholder"/>
-        </androidx.cardview.widget.CardView>
-
-
         <TextView
-            android:id="@+id/user_order_detail_name"
+            android:id="@+id/resto_table_detail_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/user_order_detail_pic_container"
             android:textSize="18sp"
-            android:text="@string/nama_restoran"
-            android:layout_marginTop="24dp"
+            android:text="@string/nama_lengkap"
+            android:layout_marginTop="40dp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
-            android:layout_below="@+id/user_order_detail_name"
-            android:layout_above="@+id/total_price_detail"
+            android:layout_below="@+id/resto_table_detail_name"
+            android:layout_above="@+id/total_price_table_detail"
             android:paddingTop="24dp"
             android:paddingBottom="10dp"
-            android:id="@+id/rv_user_order_detail"
+            android:id="@+id/rv_table_detail"
             android:visibility="visible"
             android:layout_centerHorizontal="true"/>
 
         <TextView
-            android:id="@+id/total_price_detail"
+            android:id="@+id/total_price_table_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/total_harga"
-            android:layout_above="@+id/user_status_text"
+            android:layout_above="@+id/table_status_text"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"/>
 
         <TextView
-            android:id="@+id/user_status_text"
+            android:id="@+id/table_status_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/user_change_status_button"
+            android:layout_above="@+id/resto_change_status_button"
             android:text="@string/status_pemesanan"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"/>
 
         <Button
-            android:id="@+id/user_change_status_button"
+            android:id="@+id/resto_change_status_button"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
@@ -80,21 +62,4 @@
             android:textColor="@android:color/white"/>
 
     </RelativeLayout>
-
-    <FrameLayout
-        android:id="@+id/no_order_user"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/belum_ada_pesanan"
-            android:layout_gravity="center"
-            android:textSize="20sp"/>
-    </FrameLayout>
-
-
 </FrameLayout>

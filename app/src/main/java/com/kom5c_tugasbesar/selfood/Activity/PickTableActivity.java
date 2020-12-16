@@ -132,7 +132,7 @@ public class PickTableActivity extends AppCompatActivity {
                                     orderRef.getRef().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            Pesanan newPesanan = new Pesanan(user_name[0], "Sedang Memesan", table_num);
+                                            Pesanan newPesanan = new Pesanan(resto_id, user_name[0], "Sedang Memesan", table_num);
                                             snapshot.getRef().setValue(newPesanan);
                                         }
                                         @Override
