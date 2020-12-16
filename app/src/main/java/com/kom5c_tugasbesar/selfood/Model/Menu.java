@@ -3,7 +3,7 @@ package com.kom5c_tugasbesar.selfood.Model;
 public class Menu {
 
     private String name, description, foodImgUrl;
-    private int price;
+    private int price, itemCount;
 
     public Menu() {
     }
@@ -45,5 +45,13 @@ public class Menu {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getItemCount() {
+        return itemCount;
+    }
+
+    public void setItemCount(int itemCount) {
+        this.itemCount = itemCount;
     }
 }

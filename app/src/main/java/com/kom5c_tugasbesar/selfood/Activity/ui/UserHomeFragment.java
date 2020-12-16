@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kom5c_tugasbesar.selfood.Activity.LoginActivity;
 import com.kom5c_tugasbesar.selfood.Activity.PickTableActivity;
+import com.kom5c_tugasbesar.selfood.Activity.SearchResultActivity;
 import com.kom5c_tugasbesar.selfood.Adapter.RestoranAdapter;
 import com.kom5c_tugasbesar.selfood.Model.Restoran;
 import com.kom5c_tugasbesar.selfood.R;
@@ -133,6 +134,24 @@ public class UserHomeFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String searchKey = mRestoSearch.getText().toString().trim();
+
+                if(searchKey.isEmpty()) {
+                    mRestoSearch.setError("Masukan nama restoran");
+                    mRestoSearch.requestFocus();
+                    return;
+                }
+
+                Intent searchIntent = new Intent(getActivity(), SearchResultActivity.class);
+                searchIntent.putExtra("search_key", searchKey);
+                startActivity(searchIntent);
             }
         });
 

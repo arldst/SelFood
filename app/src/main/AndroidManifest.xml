@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.RestaurantDetailActivity"></activity>
+        <activity android:name=".Activity.SearchResultActivity"></activity>
+        <activity android:name=".Activity.OrderActivity" />
+        <activity android:name=".Activity.RestaurantDetailActivity" />
         <activity android:name=".Activity.PickTableActivity" />
         <activity android:name=".Activity.SplashActivity">
             <intent-filter>

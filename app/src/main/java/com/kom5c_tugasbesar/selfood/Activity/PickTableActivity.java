@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kom5c_tugasbesar.selfood.Adapter.TableAdapter;
+import com.kom5c_tugasbesar.selfood.Model.Pelanggan;
+import com.kom5c_tugasbesar.selfood.Model.Pesanan;
 import com.kom5c_tugasbesar.selfood.Model.Table;
 import com.kom5c_tugasbesar.selfood.R;
 
@@ -35,6 +37,8 @@ public class PickTableActivity extends AppCompatActivity {
     // Firebase
     private static final String dbUrl = "https://selfood-9d3b0-default-rtdb.firebaseio.com/";
     private DatabaseReference tableRef;
+    private DatabaseReference orderRef;
+    private DatabaseReference userRef;
 
     private FirebaseRecyclerOptions<Table> options;
     private FirebaseRecyclerAdapter<Table, TableAdapter> adapter;
@@ -45,17 +49,36 @@ public class PickTableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pick_table);
 
         final String resto_id = getIntent().getStringExtra("key");
+        final long[] user_status = new long[1];
+        final String[] user_name = new String[1];
+        final String[] user_id = new String[1];
 
         viewMenuBtn = findViewById(R.id.view_menu_fab);
         recyclerView = findViewById(R.id.rv_pick_table);
         recyclerView.setHasFixedSize(true);
         layoutManager = new GridLayoutManager(PickTableActivity.this, 3);
 
+        orderRef = FirebaseDatabase.getInstance(dbUrl).getReference("pesanan");
+        userRef = FirebaseDatabase.getInstance(dbUrl).getReference("pelanggan").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
         tableRef = FirebaseDatabase.getInstance(dbUrl).getReference("restoran").child(resto_id).child("table");
+        FirebaseDatabase.getInstance(dbUrl).getReference("pelanggan").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                user_name[0] = snapshot.child("fullName").getValue().toString();
+                user_status[0] = (long) snapshot.child("status").getValue();
+                user_id[0] = snapshot.getKey().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         tableRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull final DataSnapshot snapshot) {
 
                 options = new FirebaseRecyclerOptions.Builder<Table>()
                         .setQuery(tableRef, Table.class).build();
@@ -64,8 +87,10 @@ public class PickTableActivity extends AppCompatActivity {
                     @Override
                     protected void onBindViewHolder(TableAdapter tableAdapter, int i, Table table) {
 
+                        final String table_status = table.getStatus();
+                        final int table_num = (int) table.getNumber();
                         tableAdapter.tableNumber.setText(String.valueOf(table.getNumber()));
-                        tableAdapter.tableStatus.setText(table.getStatus());
+                        tableAdapter.tableStatus.setText(table_status);
 
                         if(table.getPelanggan_id().equals("Available")) {
                             tableAdapter.statusIndicator.setBackgroundResource(R.drawable.background_available);
@@ -77,9 +102,62 @@ public class PickTableActivity extends AppCompatActivity {
                         tableAdapter.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Toast.makeText(PickTableActivity.this, "Testing...", Toast.LENGTH_SHORT).show();
+                                if(table_status.equals("Tersedia") && user_status[0] == 0) {
 
+                                    tableRef.child(String.valueOf(table_num)).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            snapshot.getRef().child("status").setValue("Sedang Memesan");
+                                            snapshot.getRef().child("pelanggan_id").setValue(user_id[0]);
+                                        }
 
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+                                    userRef.child("status").addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            user_status[0] = (long) snapshot.getValue();
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+                                    orderRef.getRef().child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            Pesanan newPesanan = new Pesanan(user_name[0], "Sedang Memesan", table_num);
+                                            snapshot.getRef().setValue(newPesanan);
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+                                    FirebaseDatabase.getInstance(dbUrl).getReference("pelanggan").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            snapshot.getRef().child("status").setValue(1);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+                                    Intent startOrderIntent = new Intent(PickTableActivity.this, OrderActivity.class);
+                                    startOrderIntent.putExtra("resto_id_order", resto_id);
+                                    startOrderIntent.putExtra("table_number", table_num);
+                                    startActivity(startOrderIntent);
+                                }
                             }
                         });
 
