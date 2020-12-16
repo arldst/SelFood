@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,9 +80,9 @@ public class OrderActivity extends AppCompatActivity {
             }
         });
 
-        restoRef.child("menu").addListenerForSingleValueEvent(new ValueEventListener() {
+        restoRef.child("menu").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull final DataSnapshot snapshot) {
                 if(snapshot.exists()) {
 
                     options = new FirebaseRecyclerOptions.Builder<Menu>()
@@ -105,14 +106,55 @@ public class OrderActivity extends AppCompatActivity {
                             menuAdapter.add.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    if(Integer.parseInt(menuAdapter.itemCount.getText().toString()) >= 0) {
+                                        String newItemCount = String.valueOf(Integer.parseInt(menuAdapter.itemCount.getText().toString()) + 1);
+                                        menuAdapter.itemCount.setText(newItemCount);
 
+                                        orderRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("foods").child(String.valueOf(i+1)).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if(!snapshot.exists()) {
+
+                                                    Menu food = new Menu(menu.getName(), menu.getDescription(), menu.getFoodImgUrl(), menu.getPrice());
+                                                    food.setItemCount(Integer.parseInt(menuAdapter.itemCount.getText().toString()));
+                                                    snapshot.getRef().setValue(food);
+                                                }
+                                                else {
+                                                    snapshot.getRef().child("itemCount").setValue(Integer.parseInt(menuAdapter.itemCount.getText().toString().trim()));
+                                                }
+                                            }
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+                                    }
                                 }
                             });
 
                             menuAdapter.remove.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    if(Integer.parseInt(menuAdapter.itemCount.getText().toString()) > 0) {
+                                        String newItemCount = String.valueOf(Integer.parseInt(menuAdapter.itemCount.getText().toString()) - 1);
+                                        menuAdapter.itemCount.setText(newItemCount);
 
+                                        orderRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("foods").child(String.valueOf(i+1))
+                                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                snapshot.getRef().child("itemCount").setValue(Integer.parseInt(menuAdapter.itemCount.getText().toString().trim()));
+                                                if(menuAdapter.itemCount.getText().toString().equals("0")) {
+                                                    snapshot.getRef().removeValue();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+                                    }
                                 }
                             });
                         }
