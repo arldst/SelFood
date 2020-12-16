@@ -44,4 +44,8 @@
     <string name="_0">0</string>
     <string name="hasil_pencarian">Hasil Pencarian</string>
     <string name="restoran_tidak_ditemukan">Restoran tidak ditemukan.</string>
+    <string name="konfirmasi_pesanan">Konfirmasi Pesanan</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="jumlah_makanan">Jumlah Makanan</string>
+    <string name="x1">x1</string>
 </resources>

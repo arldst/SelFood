@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,16 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.kom5c_tugasbesar.selfood.Adapter.MenuAdapter;
 import com.kom5c_tugasbesar.selfood.Adapter.MenuOrderAdapter;
@@ -36,6 +40,7 @@ public class OrderActivity extends AppCompatActivity {
     private ImageView restoImg;
     private TextView restoName;
     private RecyclerView recyclerView;
+    private FloatingActionButton orderBtn;
 
     // Firebase
     private static final String dbUrl = "https://selfood-9d3b0-default-rtdb.firebaseio.com/";
@@ -51,12 +56,13 @@ public class OrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
-        String resto_id = getIntent().getStringExtra("resto_id_order");
-        int table_number = getIntent().getIntExtra("table_number", 0);
+        final String resto_id = getIntent().getStringExtra("resto_id_order");
+        final int table_number = getIntent().getIntExtra("table_number", 0);
 
         restoImg = findViewById(R.id.resto_img_order);
         restoName = findViewById(R.id.resto_name_order);
         recyclerView = findViewById(R.id.rv_menu_order);
+        orderBtn = findViewById(R.id.fab_order);
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(false);
 
@@ -118,9 +124,13 @@ public class OrderActivity extends AppCompatActivity {
                                                     Menu food = new Menu(menu.getName(), menu.getDescription(), menu.getFoodImgUrl(), menu.getPrice());
                                                     food.setItemCount(Integer.parseInt(menuAdapter.itemCount.getText().toString()));
                                                     snapshot.getRef().setValue(food);
+                                                    orderRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                            .child("total_price").setValue(ServerValue.increment(food.getPrice()));
                                                 }
                                                 else {
                                                     snapshot.getRef().child("itemCount").setValue(Integer.parseInt(menuAdapter.itemCount.getText().toString().trim()));
+                                                    orderRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                            .child("total_price").setValue(ServerValue.increment(menu.getPrice()));
                                                 }
                                             }
                                             @Override
@@ -147,6 +157,8 @@ public class OrderActivity extends AppCompatActivity {
                                                 if(menuAdapter.itemCount.getText().toString().equals("0")) {
                                                     snapshot.getRef().removeValue();
                                                 }
+                                                orderRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                        .child("total_price").setValue(ServerValue.increment(-menu.getPrice()));
                                             }
 
                                             @Override
@@ -179,6 +191,32 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        orderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                orderRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.child("foods").exists()) {
+                            Intent proceedIntent = new Intent(OrderActivity.this, ProceedOrderActivity.class);
+                            proceedIntent.putExtra("restoranid", resto_id);
+                            proceedIntent.putExtra("restotable", table_number);
+                            startActivity(proceedIntent);
+                        }
+                        else {
+                            Toast.makeText(OrderActivity.this, "Kamu belum memilih makanan", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
     }

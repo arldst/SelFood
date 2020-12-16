@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ProceedOrderActivity"
+    android:background="@color/colorRed">
+
+    <TextView
+        android:id="@+id/confirm_order_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/konfirmasi_pesanan"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/opensans_extrabold"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_confirm_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/confirm_order_label"
+        android:layout_above="@+id/total_price_confirm"
+        android:paddingBottom="20dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/total_price_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Harga"
+        android:layout_above="@+id/confirm_order_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/confirm_order_button"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/edittext_custom_box"
+        android:text="@string/konfirmasi"
+        />
+
+</RelativeLayout>

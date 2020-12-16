@@ -108,7 +108,7 @@ public class PickTableActivity extends AppCompatActivity {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                                             snapshot.getRef().child("status").setValue("Sedang Memesan");
-                                            snapshot.getRef().child("pelanggan_id").setValue(user_id[0]);
+                                            snapshot.getRef().child("pelanggan_id").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
                                         }
 
                                         @Override
@@ -157,6 +157,9 @@ public class PickTableActivity extends AppCompatActivity {
                                     startOrderIntent.putExtra("resto_id_order", resto_id);
                                     startOrderIntent.putExtra("table_number", table_num);
                                     startActivity(startOrderIntent);
+                                }
+                                else {
+                                    Toast.makeText(PickTableActivity.this, "Pesanan anda masih dalam proses", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
